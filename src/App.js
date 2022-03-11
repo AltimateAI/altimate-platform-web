@@ -12,7 +12,7 @@ import {
 
 function App() {
   return (
-    <Router>
+    <Router basename='/altimate-platform-web'>
       <StyledContainer>
         <Routes>
           <Route path="/signup" element={<Signup />}/>
