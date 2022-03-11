@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/altimate-platform-web/static/css/main.31d6cfe0.css",
-    "main.js": "/altimate-platform-web/static/js/main.d14526a6.js",
+    "main.js": "/altimate-platform-web/static/js/main.4333217c.js",
     "static/media/bg.png": "/altimate-platform-web/static/media/bg.aa09e40d43fd8b50e2ae.png",
     "static/media/logo.png": "/altimate-platform-web/static/media/logo.2e65aa285ccc73252c00.png",
     "index.html": "/altimate-platform-web/index.html",
-    "main.d14526a6.js.map": "/altimate-platform-web/static/js/main.d14526a6.js.map"
+    "main.4333217c.js.map": "/altimate-platform-web/static/js/main.4333217c.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.d14526a6.js"
+    "static/js/main.4333217c.js"
   ]
 }
