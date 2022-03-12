@@ -4,6 +4,21 @@ object-assign
 @license MIT
 */
 
+/*!
+    localForage -- Offline Storage, Improved
+    Version 1.7.3
+    https://localforage.github.io/localForage
+    (c) 2013-2017 Mozilla, Apache License 2.0
+*/
+
+/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+
 /**
  * React Router DOM v6.2.2
  *
