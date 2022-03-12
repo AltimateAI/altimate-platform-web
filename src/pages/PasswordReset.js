@@ -12,63 +12,67 @@ import * as Yup from 'yup'
 
 import {Formik, Form} from 'formik'
 import { TextInput } from "../components/FormLib";
-import { FiMail, FiLock } from 'react-icons/fi';
+import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
 
 import { connect } from "react-redux";
-import { loginUser } from "../auth/actions/userAction";
-import { useNavigate } from "react-router-dom"
+import { resetPassword } from "../auth/actions/userAction";
+import { useSearchParams, useNavigate } from "react-router-dom"
 
-const Login = ({loginUser}) => {
-    const navigate = useNavigate();
+const PasswordReset = ({ resetPassword }) => {
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams();
+    const reset_password_code = searchParams.get("reset_password_code");
+    console.log(reset_password_code);
     return (
         <div>
             <StyledFormAread>
                 <Avatar image={Logo} widthSize={200} heightSize={50}/>
                 <StyledTitle color={colors.dark1} size={30}>
-                    User Login
+                    Reset Password
                 </StyledTitle>
                 <Formik
                     initialValues={{
-                        email: "",
-                        password: "",
+                        new_password: "",
+                        confirm_new_password: "",
+                        reset_password_code
                     }}
                     validationSchema={
                         Yup.object({
-                            email: Yup.string()
-                                .email("Invalid email address")
-                                .required("Required field"),
-                            password: Yup.string()
+                            new_password: Yup.string()
                                 .min(3, "Password is too short")
                                 .max(30, "password is too long")
+                                .required("Required field"),
+                            confirm_new_password: Yup.string()
                                 .required("Required field")
+                                .oneOf([Yup.ref("new_password")], "Passwords must match")
                         })
                     }
                     onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values)
-                        loginUser(values, navigate, setFieldError, setSubmitting);
+                        resetPassword(values, navigate, setFieldError, setSubmitting);
                     }}
                 >
                     {( {isSubmitting} ) => (
                         <Form>
                             <TextInput
-                                name="email"
-                                type="text"
-                                label="Email Address"
-                                placeholder="member@altimate.ai"
-                                icon={<FiMail/>}
-                            />
-                            <TextInput
-                                name="password"
+                                name="new_password"
                                 type="password"
                                 label="Password"
+                                placeholder="***********"
+                                icon={<FiLock/>}
+                            />
+                            <TextInput
+                                name="confirm_new_password"
+                                type="password"
+                                label="Confirm Password"
                                 placeholder="***********"
                                 icon={<FiLock/>}
                             />
                             <ButtonGroup>
                                 {!isSubmitting && (
                                         <StyledFormButton type="submit">
-                                            Login
+                                            Submit
                                         </StyledFormButton>
                                     ) 
                                  }
@@ -86,10 +90,7 @@ const Login = ({loginUser}) => {
                     )}
                 </Formik>
                 <ExtraText>
-                    Forgotten password ? <TextLink to="/forgottenPassword">Reset it</TextLink>
-                </ExtraText>
-                <ExtraText>
-                    New here ? <TextLink to="/signup">Signup</TextLink>
+                    Already have an account ? <TextLink to="/login">Login</TextLink>
                 </ExtraText>
             </StyledFormAread>
             <CopyrightText>
@@ -99,4 +100,4 @@ const Login = ({loginUser}) => {
     )
 }
 
-export default connect(null, {loginUser})(Login);
+export default connect(null, {resetPassword})(PasswordReset);

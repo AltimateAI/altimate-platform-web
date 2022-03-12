@@ -1,0 +1,1 @@
+export const BaseUrl = "https://altimate-backend.herokuapp.com/"

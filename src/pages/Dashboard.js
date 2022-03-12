@@ -1,29 +1,33 @@
 import { StyledTitle, StyledSubTitle, Avatar, 
     StyledButton, ButtonGroup, colors, CopyrightText 
 } from "../components/Styles";
-import Logo from "./../assets/logo.png";
 
-const Dashbord = () => {
-    return ( 
+import { connect } from "react-redux";
+import { logoutUser } from "../auth/actions/userAction";
+import { useNavigate } from "react-router-dom"
+
+const Dashbord = ({logoutUser, user}) => {
+    const navigate = useNavigate();
+    return (
         <div>
-            <div>
                 <StyledTitle size={50} color={colors.light1}>
-                    Welcome to Altimate ai
+                    Welcome {user.user_name}
                 </StyledTitle>
                 <StyledSubTitle size={28}>
                     Feel free to explore our library
                 </StyledSubTitle>
                 <ButtonGroup>
-                    <StyledButton to="#">Logout</StyledButton>
+                    <StyledButton to="#" onClick={() => logoutUser(navigate)}>Logout</StyledButton>
                 </ButtonGroup>
-            </div>
-            <div style={{"margin-bottom": "0px"}}>
                 <CopyrightText>
                     All rights reserved &copy;2022 by Altimate.ai
                 </CopyrightText>
-            </div>
         </div>
     )
 }
 
-export default Dashbord;
+const mapStateToProps = ({session}) => ({
+    user : session.user
+})
+
+export default connect(mapStateToProps, {logoutUser})(Dashbord);

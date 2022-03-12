@@ -10,43 +10,37 @@ import { StyledFormButton, StyledFormAread,
 import Logo from "./../assets/logo.png";
 import * as Yup from 'yup'
 
-import {Formik, Form} from 'formik'
+import {Formik, Form} from 'formik';
 import { TextInput } from "../components/FormLib";
 import { FiMail, FiLock } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
 
 import { connect } from "react-redux";
-import { loginUser } from "../auth/actions/userAction";
-import { useNavigate } from "react-router-dom"
+import { forgottenPassword } from "../auth/actions/userAction";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({loginUser}) => {
+const ForgottenPassword = ({forgottenPassword}) => {
     const navigate = useNavigate();
     return (
         <div>
             <StyledFormAread>
                 <Avatar image={Logo} widthSize={200} heightSize={50}/>
                 <StyledTitle color={colors.dark1} size={30}>
-                    User Login
+                    Reset Password
                 </StyledTitle>
                 <Formik
                     initialValues={{
-                        email: "",
-                        password: "",
+                        email: ""
                     }}
                     validationSchema={
                         Yup.object({
                             email: Yup.string()
                                 .email("Invalid email address")
-                                .required("Required field"),
-                            password: Yup.string()
-                                .min(3, "Password is too short")
-                                .max(30, "password is too long")
                                 .required("Required field")
                         })
                     }
                     onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        console.log(values)
-                        loginUser(values, navigate, setFieldError, setSubmitting);
+                        forgottenPassword(values, navigate, setFieldError, setSubmitting);
                     }}
                 >
                     {( {isSubmitting} ) => (
@@ -54,21 +48,14 @@ const Login = ({loginUser}) => {
                             <TextInput
                                 name="email"
                                 type="text"
-                                label="Email Address"
+                                label="Your Email Address"
                                 placeholder="member@altimate.ai"
                                 icon={<FiMail/>}
-                            />
-                            <TextInput
-                                name="password"
-                                type="password"
-                                label="Password"
-                                placeholder="***********"
-                                icon={<FiLock/>}
                             />
                             <ButtonGroup>
                                 {!isSubmitting && (
                                         <StyledFormButton type="submit">
-                                            Login
+                                            Send Email
                                         </StyledFormButton>
                                     ) 
                                  }
@@ -85,12 +72,6 @@ const Login = ({loginUser}) => {
                         </Form>
                     )}
                 </Formik>
-                <ExtraText>
-                    Forgotten password ? <TextLink to="/forgottenPassword">Reset it</TextLink>
-                </ExtraText>
-                <ExtraText>
-                    New here ? <TextLink to="/signup">Signup</TextLink>
-                </ExtraText>
             </StyledFormAread>
             <CopyrightText>
                 All rights reserved &copy;2022 by Altimate.ai
@@ -99,4 +80,4 @@ const Login = ({loginUser}) => {
     )
 }
 
-export default connect(null, {loginUser})(Login);
+export default connect(null, {forgottenPassword})(ForgottenPassword);

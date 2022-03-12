@@ -15,20 +15,25 @@ import { TextInput } from "../components/FormLib";
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
 
+import { connect } from "react-redux";
+import { signupUser } from "../auth/actions/userAction";
+import { useNavigate } from "react-router-dom"
+
 const Signup = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <StyledFormAread>
                 <Avatar image={Logo} widthSize={200} heightSize={50}/>
                 <StyledTitle color={colors.dark1} size={30}>
-                    Member Signup
+                    User Signup
                 </StyledTitle>
                 <Formik
                     initialValues={{
                         name: "",
                         email: "",
                         password: "",
-                        confirmPassword: ""
+                        confirm_password: ""
                     }}
                     validationSchema={
                         Yup.object({
@@ -38,17 +43,17 @@ const Signup = () => {
                                 .email("Invalid email address")
                                 .required("Required field"),
                             password: Yup.string()
-                                .min(8, "Password is too short")
+                                .min(3, "Password is too short")
                                 .max(30, "password is too long")
                                 .required("Required field"),
-                            confirmPassword: Yup.string()
+                            confirm_password: Yup.string()
                                 .required("Required field")
                                 .oneOf([Yup.ref("password")], "Passwords must match")
                         })
                     }
-                    onSubmit={(values, {setSubmitting}) => {
+                    onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values)
-                        //setSubmitting(false)
+                        signupUser(values, navigate, setFieldError, setSubmitting);
                     }}
                 >
                     {( {isSubmitting} ) => (
@@ -75,7 +80,7 @@ const Signup = () => {
                                 icon={<FiLock/>}
                             />
                             <TextInput
-                                name="confirmPassword"
+                                name="confirm_password"
                                 type="password"
                                 label="Confirm Password"
                                 placeholder="***********"
@@ -112,4 +117,4 @@ const Signup = () => {
     )
 }
 
-export default Signup;
+export default connect(null, {signupUser})(Signup);
