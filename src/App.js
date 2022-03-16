@@ -16,6 +16,7 @@ import {connect} from 'react-redux'
 import ForgottenPassword from './pages/ForgottenPassword';
 import EmailSent from './pages/EmailSent';
 import PasswordReset from './pages/PasswordReset';
+import ConfirmationEmail from './pages/ConfirmationEmail';
 
 function App({ checked }) {
   return (
@@ -40,6 +41,9 @@ function App({ checked }) {
           </Route>
           <Route path="/emailSent" element={<BasicRoute />}>
             <Route path="/emailSent" element={<EmailSent />}/>
+          </Route>
+          <Route path="/confirmEmail" element={<BasicRoute />}>
+            <Route path="/confirmEmail" element={<ConfirmationEmail />}/>
           </Route>
           <Route path="/dashbord" element={<AuthRoute />}>
             <Route path="/dashbord" element={<Dashbord />}/>

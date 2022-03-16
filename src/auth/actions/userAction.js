@@ -22,6 +22,10 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
             setFieldError("email", message);
             setFieldError("password", message);
         }
+        else if (data.status === 403) {
+            let {message} = data;
+            setFieldError("email", message);
+        }
         else if (data.status === 200) {
             const token = data.access_token;
             sessionService.saveSession(token).then(() => {
@@ -51,12 +55,13 @@ export const signupUser = (credentials, navigate, setFieldError, setSubmitting) 
             setFieldError("email", message);
         }
         else if (data.status === 201) {
-            const token = data.access_token;
-            sessionService.saveSession(token).then(() => {
-                sessionService.saveUser(data).then(() => {
-                     navigate("/dashbord")
-                }).catch(err => console.error(err))
-            }).catch(err => console.error(err))
+            const {email} = credentials;
+            navigate("/emailSent", {
+                state: {   
+                    user_email: email,
+                    reset: false
+                }
+            })
         }
 
         setSubmitting(false)
@@ -128,6 +133,31 @@ export const resetPassword = (credentials, navigate, setFieldError, setSubmittin
         }
 
         setSubmitting(false)
+
+    }).catch(err => console.error(err))
+};
+
+export const confirmEmail = (confirmation_code) => {
+    const body = {
+        confirmation_code
+    };
+    axios.patch(BaseUrl + "confirmAccount",
+    body,
+    {
+        headers: {
+            "content-type": "application/json"
+        }
+    }
+    ).then((response) => {
+        const {data} = response;
+        if (data.status === 400) {
+            const {message} = data;
+            console.error(message)
+        }
+        else if (data.status === 200) {
+            const {message} = data;
+            console.log(message)
+        }
 
     }).catch(err => console.error(err))
 };

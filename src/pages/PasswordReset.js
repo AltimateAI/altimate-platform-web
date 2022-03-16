@@ -23,7 +23,6 @@ const PasswordReset = ({ resetPassword }) => {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
     const reset_password_code = searchParams.get("reset_password_code");
-    console.log(reset_password_code);
     return (
         <div>
             <StyledFormAread>
