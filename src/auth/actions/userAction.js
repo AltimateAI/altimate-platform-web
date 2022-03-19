@@ -30,7 +30,7 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
             const token = data.access_token;
             sessionService.saveSession(token).then(() => {
                 sessionService.saveUser(data).then(() => {
-                     navigate("/dashbord")
+                     navigate("/projects")
                 }).catch(err => console.error(err))
             }).catch(err => console.error(err))
         }

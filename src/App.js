@@ -17,6 +17,10 @@ import ForgottenPassword from './pages/ForgottenPassword';
 import EmailSent from './pages/EmailSent';
 import PasswordReset from './pages/PasswordReset';
 import ConfirmationEmail from './pages/ConfirmationEmail';
+import Navbar from './pages/Navbar';
+import Projects from './pages/Projects';
+import Settings from './pages/Settings';
+import Templates from './pages/Templates';
 
 function App({ checked }) {
   return (
@@ -45,8 +49,14 @@ function App({ checked }) {
           <Route path="/confirmEmail" element={<BasicRoute />}>
             <Route path="/confirmEmail" element={<ConfirmationEmail />}/>
           </Route>
-          <Route path="/dashbord" element={<AuthRoute />}>
-            <Route path="/dashbord" element={<Dashbord />}/>
+          <Route path="/projects" element={<AuthRoute />}>
+            <Route path="/projects" element={<Projects />}/>
+          </Route>
+          <Route path="/settings" element={<AuthRoute />}>
+            <Route path="/settings" element={<Settings />}/>
+          </Route>
+          <Route path="/templates" element={<AuthRoute />}>
+            <Route path="/templates" element={<Templates />}/>
           </Route>
         </Routes>
       </StyledContainer>
