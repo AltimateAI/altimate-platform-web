@@ -26,7 +26,7 @@ export const TextInput = ({icon, ...props}) => {
             )}
 
             {props.type === "password" && (
-                <StyledTextInput 
+                <StyledTextInput
                     invalid={meta.touched && meta.error}
                     {...field}
                     {...props}

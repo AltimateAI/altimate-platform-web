@@ -161,3 +161,53 @@ export const confirmEmail = (confirmation_code) => {
 
     }).catch(err => console.error(err))
 };
+
+export const getSdkAccessKey = (setaccess_key) => {
+    const url = BaseUrl + "access_key";
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.get(url, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 401) {            
+                console.log(message);
+            }
+            else if (data.status === 200) {
+                setaccess_key(data.access_key);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};
+
+export const generateSdkAccessKey = (setaccess_key) => {
+    const url = BaseUrl + "access_key";
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.post(url, {}, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 404) {           
+                console.log(message);
+            }
+            else if (data.status === 201) {
+                setaccess_key(data.access_key);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};

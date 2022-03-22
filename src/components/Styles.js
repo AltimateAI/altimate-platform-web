@@ -77,13 +77,13 @@ export const ButtonGroup = styled.div`
 `;
 
 export const StyledTextInput = styled.input`
-    width: 280px;
+    width: ${(props) => props.size ? props.size : 280}px;
     padding: 25px;
     padding-left: 50px;
     font-size: 17px;
     letter-spacing: 1px;
     color: ${colors.dark1};
-    background-color: ${colors.light2}
+    background-color: ${(props) => props.color ? props.color : colors.light2};
     border: 0;
     display: block;
     margin: 5px auto 10px auto;
