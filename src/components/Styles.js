@@ -10,7 +10,8 @@ export const colors = {
     dark1: "#1F2937",
     dark2: "#4B5563",
     dark3: "#9CA3AF",
-    red: "#DC2626"
+    red: "#DC2626",
+    transparent: "transparent"
 }
 
 export const StyledContainer = styled.div`
@@ -52,10 +53,10 @@ export const Avatar = styled.div`
 
 export const StyledButton = styled(Link)`
     padding: 10px;
-    width: 150px;
-    background-color: transparent;
+    width: ${(props) => props.width ? props.width : 150}px;
+    background-color: ${(props) => props.backgroundcolor ? props.backgroundcolor : colors.transparent};
     font-size: 16px;
-    border: 3px solid ${colors.primary};
+    border: 3px solid ${(props) => props.color ? props.color : colors.primary};
     border-radius: 25px;
     color: ${colors.primary};
     text-decoration: none;
@@ -168,5 +169,22 @@ export const CopyrightText = styled.p`
     padding: 5px;
     margin: 20px;
     text-align: center;
-    color: ${colors.light2}
+    color: ${colors.light2};
+`;
+
+export const StyledTable = styled.table`
+    width: 80%;
+    background-color: ${colors.light2};
+    border: 1px solid ${colors.dark2};
+    border-collapse: collapse;
+`;
+
+export const TH = styled.th`
+    border: 1px solid ${colors.dark2};
+    border-collapse: collapse;
+`;
+
+export const TD = styled.td`
+    border: 1px solid ${colors.dark2};
+    border-collapse: collapse;
 `;
