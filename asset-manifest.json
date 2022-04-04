@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/altimate-platform-web/static/css/main.7e11879f.css",
-    "main.js": "/altimate-platform-web/static/js/main.87108a09.js",
+    "main.js": "/altimate-platform-web/static/js/main.a6debae7.js",
     "static/media/bg.png": "/altimate-platform-web/static/media/bg.aa09e40d43fd8b50e2ae.png",
     "static/media/logo.png": "/altimate-platform-web/static/media/logo.2e65aa285ccc73252c00.png",
     "index.html": "/altimate-platform-web/index.html",
     "main.7e11879f.css.map": "/altimate-platform-web/static/css/main.7e11879f.css.map",
-    "main.87108a09.js.map": "/altimate-platform-web/static/js/main.87108a09.js.map"
+    "main.a6debae7.js.map": "/altimate-platform-web/static/js/main.a6debae7.js.map"
   },
   "entrypoints": [
     "static/css/main.7e11879f.css",
-    "static/js/main.87108a09.js"
+    "static/js/main.a6debae7.js"
   ]
 }
