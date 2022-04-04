@@ -345,3 +345,75 @@ export const add_project = (project, setSubmitting, setFieldError, closeModal) =
         }).catch(err => console.error(err))
     });    
 };
+
+export const get_notebooks = (setNotebooks, setLoaded) => {
+    const url = BaseUrl + "notebook";
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.get(url, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 404 || data.status === 403) {            
+                console.log(message);
+            }
+            else if (data.status === 200) {
+                setNotebooks(data.list);
+                setLoaded(true);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};
+
+export const get_long_url = (shortUrl) => {
+    const url = BaseUrl + "shortenUrl/" + shortUrl;
+
+    const config = {
+        headers: {
+            "content-type": "application/json"
+        }
+    }
+          
+    axios.get(url, config).then((response) => {
+        const {data} = response;
+        let {message} = data;
+        if (data.status === 404) {            
+            console.log(message);
+        }
+        else if (data.status === 200) {
+            window.location.replace(data.longUrl)
+        }    
+    }).catch(err => console.error(err))
+};
+
+export const get_html_table = (public_id, setTable) => {
+    const url = BaseUrl + "html_table/" + public_id;
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.get(url, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 404 || data.status === 403) {            
+                console.log(message);
+            }
+            else if (data.status === 200) {
+                setTable(data.html_content);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};

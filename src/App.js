@@ -21,10 +21,27 @@ import Navbar from './pages/Navbar';
 import Projects from './pages/Projects';
 import Settings from './pages/Settings';
 import Templates from './pages/Templates';
-
+import { useEffect } from 'react';
+import { get_long_url } from './auth/actions/userAction';
+import HtmlContent from './pages/HtmlContent';
 function App({ checked }) {
+    
+    useEffect(() => {
+      let url = window.location.href;
+      if (url != null && url != undefined)
+      {
+          let url_table = url.split('/');
+          if (url_table.length === 5)
+          {
+              let shortCode = url_table[4];
+              console.log(shortCode);
+              get_long_url(shortCode);
+          }
+      }
+    }, []);
   return (
     <Router basename='/altimate-platform-web'>
+      <Navbar/>
       {checked &&
       <StyledContainer>
         <Routes>
@@ -51,6 +68,9 @@ function App({ checked }) {
           </Route>
           <Route path="/projects" element={<AuthRoute />}>
             <Route path="/projects" element={<Projects />}/>
+          </Route>
+          <Route path="/html_table" element={<AuthRoute />}>
+            <Route path="/html_table" element={<HtmlContent />}/>
           </Route>
           <Route path="/settings" element={<AuthRoute />}>
             <Route path="/settings" element={<Settings />}/>

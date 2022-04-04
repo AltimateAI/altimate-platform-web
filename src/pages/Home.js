@@ -1,9 +1,8 @@
 import { StyledTitle, StyledSubTitle, Avatar, 
     StyledButton, ButtonGroup, colors, CopyrightText 
 } from "../components/Styles";
-import Logo from "./../assets/logo.png";
 
-const Home = () => {
+const Home = () => {    
     return ( 
         <div>
             <StyledTitle size={50} color={colors.light1}>
