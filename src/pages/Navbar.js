@@ -10,7 +10,6 @@ import { StyledButton} from "../components/Styles";
 import { logoutUser } from "../auth/actions/userAction";
 
 import { connect } from "react-redux";
-import { sessionService } from 'redux-react-session';
 
 const Navbar = ({logoutUser}) => {
   const [sidebar, setSidebar] = useState(true);
@@ -29,10 +28,10 @@ const Navbar = ({logoutUser}) => {
             <StyledButton style={{marginLeft: 'auto'}} to="#" onClick={() => logoutUser(navigate)}>Logout</StyledButton>
           </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
+            <ul className='nav-menu-items'>
               <li className='navbar-toggle'>
                 <Link to='#' className='menu-bars'>
-                  <AiIcons.AiOutlineClose />
+                  <AiIcons.AiOutlineClose onClick={showSidebar}/>
                 </Link>
               </li>
               {SidebarData.map((item, index) => {

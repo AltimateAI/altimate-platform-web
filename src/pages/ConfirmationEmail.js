@@ -1,4 +1,4 @@
-import { Avatar, ButtonGroup, colors, ExtraText, StyledButton, StyledFormAread, StyledTitle } from "../components/Styles";
+import { Avatar, ButtonGroup, colors, ExtraText, StyledButton, StyledFormArea, StyledTitle } from "../components/Styles";
 import Logo from "./../assets/logo.png";
 import { confirmEmail } from "../auth/actions/userAction";
 import { useSearchParams } from "react-router-dom"
@@ -28,7 +28,7 @@ const ConfirmationEmail = () => {
             >
                 <Avatar image={Logo} />
             </div>
-                <StyledFormAread bg={colors.dark2}>
+                <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={50}>
                     Your email is validated
                 </StyledTitle>
@@ -37,7 +37,7 @@ const ConfirmationEmail = () => {
                         Proceed
                     </StyledButton>
                 </ButtonGroup>
-                </StyledFormAread>      
+                </StyledFormArea>      
         </div>
     )
 }

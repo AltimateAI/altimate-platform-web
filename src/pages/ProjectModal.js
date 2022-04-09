@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { get_project, update_project, add_project } from "../auth/actions/userAction";
-import { StyledFormButton, StyledFormAread,
+import { StyledFormButton, StyledFormArea,
     StyledTitle, colors,
     ButtonGroup
 } from "../components/Styles";
@@ -18,7 +18,7 @@ const ProjectModal = ({ closeModal, id, project, setErrorMessage }) => {
 
   return (
         <>
-            <StyledFormAread>
+            <StyledFormArea>
             {id && (
                 <StyledTitle color={colors.dark1} size={30}>
                     Update Project
@@ -89,7 +89,7 @@ const ProjectModal = ({ closeModal, id, project, setErrorMessage }) => {
                         </Form>
                     )}
                 </Formik>                
-            </StyledFormAread>
+            </StyledFormArea>
         </>
     );
 };

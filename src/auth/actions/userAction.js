@@ -393,7 +393,58 @@ export const get_long_url = (shortUrl) => {
     }).catch(err => console.error(err))
 };
 
-export const get_html_table = (public_id, setTable) => {
+export const get_comments = (html_id, setComments) => {
+    const url = BaseUrl + "comment/" + html_id;
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.get(url, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 404 || data.status === 403) {            
+                console.log(message);
+            }
+            else if (data.status === 200) {
+                setComments(data.list);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};
+
+export const add_comment = (values, setComments) => {
+    const url = BaseUrl + "comment";
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.post(url, values, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 404 || data.status === 403) {            
+                console.log(message);
+            }
+            else if (data.status === 201) {
+                console.log(data);
+                get_comments(values.html_id, setComments);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};
+
+export const get_html_table = (public_id, setTable, setHtml_id, setComments) => {
     const url = BaseUrl + "html_table/" + public_id;
 
     sessionService.loadSession().then(session => {
@@ -412,6 +463,8 @@ export const get_html_table = (public_id, setTable) => {
             }
             else if (data.status === 200) {
                 setTable(data.html_content);
+                setHtml_id(data.id)
+                get_comments(data.id, setComments)
             }
     
         }).catch(err => console.error(err))

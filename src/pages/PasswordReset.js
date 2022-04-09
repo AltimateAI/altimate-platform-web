@@ -1,4 +1,4 @@
-import { StyledFormButton, StyledFormAread, 
+import { StyledFormButton, StyledFormArea, 
     StyledTextInput, StyledLabel, 
     StyledTitle, Avatar, colors,
     ButtonGroup,
@@ -25,7 +25,7 @@ const PasswordReset = ({ resetPassword }) => {
     const reset_password_code = searchParams.get("reset_password_code");
     return (
         <div>
-            <StyledFormAread>
+            <StyledFormArea>
                 <Avatar image={Logo} widthSize={200} heightSize={50}/>
                 <StyledTitle color={colors.dark1} size={30}>
                     Reset Password
@@ -91,7 +91,7 @@ const PasswordReset = ({ resetPassword }) => {
                 <ExtraText>
                     Already have an account ? <TextLink to="/login">Login</TextLink>
                 </ExtraText>
-            </StyledFormAread>
+            </StyledFormArea>
             <CopyrightText>
                 All rights reserved &copy;2022 by Altimate.ai
             </CopyrightText>

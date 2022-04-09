@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Avatar, ButtonGroup, colors, ExtraText, StyledButton, StyledFormAread, StyledTitle } from "../components/Styles";
+import { Avatar, ButtonGroup, colors, ExtraText, StyledButton, StyledFormArea, StyledTitle } from "../components/Styles";
 import Logo from "./../assets/logo.png";
 
 const EmailSent = () => {
@@ -22,7 +22,7 @@ const EmailSent = () => {
                 <Avatar image={Logo} />
             </div>
             {!reset && user_email && (
-                <StyledFormAread bg={colors.dark2}>
+                <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={65}>
                     Account Confirmation
                 </StyledTitle>
@@ -38,10 +38,10 @@ const EmailSent = () => {
                         Proceed
                     </StyledButton>
                 </ButtonGroup>
-                </StyledFormAread>
+                </StyledFormArea>
             )}
             {reset && user_email && (
-                <StyledFormAread bg={colors.dark2}>
+                <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={65}>
                     Reset Password
                 </StyledTitle>
@@ -49,10 +49,10 @@ const EmailSent = () => {
                     An email with a reset password link has been sent to your email:
                     <b style={{ color: colors.primary}}>{user_email}</b>
                 </ExtraText>
-                </StyledFormAread>
+                </StyledFormArea>
             )}
             {!reset && !user_email && (
-                <StyledFormAread bg={colors.dark2}>
+                <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={65}>
                     Reset Password
                 </StyledTitle>
@@ -67,7 +67,7 @@ const EmailSent = () => {
                         go to Login
                     </StyledButton>
                 </ButtonGroup>
-                </StyledFormAread>
+                </StyledFormArea>
             )}
             
         </div>

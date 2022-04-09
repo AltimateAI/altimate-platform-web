@@ -27,7 +27,7 @@ export const StyledContainer = styled.div`
 
 export const StyledTitle = styled.h2`
    font-size: ${(props) => props.size}px;
-   text-align: center;
+   text-align: ${(props) => props.align ? props.align : "center"};
    color: ${(props) => props.color ? props.color : colors.primary};
    padding: 5px;
    margin-bottom: 20px;
@@ -104,7 +104,7 @@ export const StyledLabel = styled.p`
     font-weight: bold;
 `;
 
-export const StyledFormAread = styled.div`
+export const StyledFormArea = styled.div`
     background-color: ${props => props.bg || colors.light1};
     text-align: center;
     padding: 45px 55px;
@@ -187,4 +187,27 @@ export const TH = styled.th`
 export const TD = styled.td`
     border: 1px solid ${colors.dark2};
     border-collapse: collapse;
+`;
+
+export const StyledHtmlContent = styled.div`
+    background-color: ${colors.light1};
+    margin: 30px;
+`;
+
+export const StyledTextArea = styled.textarea`
+    width: 80%;
+    margin-right: 200px;
+    margin-left: 200px;
+    height: 100px;
+`;
+
+export const StyledCommentBox = styled.div`
+    margin: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${colors.light1};
+    background-size: cover; 
+    background-attachment: fixed;
 `;

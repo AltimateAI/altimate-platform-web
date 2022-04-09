@@ -1,4 +1,4 @@
-import { StyledFormButton, StyledFormAread, 
+import { StyledFormButton, StyledFormArea, 
     StyledTextInput, StyledLabel, 
     StyledTitle, Avatar, colors,
     ButtonGroup,
@@ -23,7 +23,7 @@ const Signup = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <StyledFormAread>
+            <StyledFormArea>
                 <Avatar image={Logo} widthSize={200} heightSize={50}/>
                 <StyledTitle color={colors.dark1} size={30}>
                     User Signup
@@ -109,7 +109,7 @@ const Signup = () => {
                 <ExtraText>
                     Already have an account ? <TextLink to="/login">Login</TextLink>
                 </ExtraText>
-            </StyledFormAread>
+            </StyledFormArea>
             <CopyrightText>
                 All rights reserved &copy;2022 by Altimate.ai
             </CopyrightText>
