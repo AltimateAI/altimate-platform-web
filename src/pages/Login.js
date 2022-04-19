@@ -1,19 +1,6 @@
-import { StyledFormButton, StyledFormArea, 
-    StyledTextInput, StyledLabel, 
-    StyledTitle, Avatar, colors,
-    ButtonGroup,
-    StyledButton,
-    ExtraText,
-    TextLink,
-    CopyrightText
-} from "../components/Styles";
-import Logo from "./../assets/logo.png";
 import * as Yup from 'yup'
 
-import {Formik, Form} from 'formik'
-import { TextInput } from "../components/FormLib";
-import { FiMail, FiLock } from 'react-icons/fi';
-import { ThreeDots } from 'react-loader-spinner';
+import {Formik, Field, ErrorMessage} from 'formik'
 
 import { connect } from "react-redux";
 import { loginUser } from "../auth/actions/userAction";
@@ -22,80 +9,72 @@ import { useNavigate } from "react-router-dom"
 const Login = ({loginUser}) => {
     const navigate = useNavigate();
     return (
-        <div>
-            <StyledFormArea>
-                <Avatar image={Logo} widthSize={200} heightSize={50}/>
-                <StyledTitle color={colors.dark1} size={30}>
-                    User Login
-                </StyledTitle>
-                <Formik
-                    initialValues={{
-                        email: "",
-                        password: "",
-                    }}
-                    validationSchema={
-                        Yup.object({
-                            email: Yup.string()
-                                .email("Invalid email address")
-                                .required("Required field"),
-                            password: Yup.string()
-                                .min(3, "Password is too short")
-                                .max(30, "password is too long")
-                                .required("Required field")
-                        })
-                    }
-                    onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        console.log(values)
-                        loginUser(values, navigate, setFieldError, setSubmitting);
-                    }}
-                >
-                    {( {isSubmitting} ) => (
-                        <Form>
-                            <TextInput
-                                name="email"
-                                type="text"
-                                label="Email Address"
-                                placeholder="member@altimate.ai"
-                                icon={<FiMail/>}
-                            />
-                            <TextInput
-                                name="password"
-                                type="password"
-                                label="Password"
-                                placeholder="***********"
-                                icon={<FiLock/>}
-                            />
-                            <ButtonGroup>
-                                {!isSubmitting && (
-                                        <StyledFormButton type="submit">
-                                            Login
-                                        </StyledFormButton>
-                                    ) 
-                                 }
-
-                                {isSubmitting && (
-                                        <ThreeDots
-                                            color={colors.dark2}
-                                            height={49}
-                                            width={100}
-                                        />
-                                    )
-                                }
-                            </ButtonGroup>
-                        </Form>
-                    )}
-                </Formik>
-                <ExtraText>
-                    Forgotten password ? <TextLink to="/forgottenPassword">Reset it</TextLink>
-                </ExtraText>
-                <ExtraText>
-                    New here ? <TextLink to="/signup">Signup</TextLink>
-                </ExtraText>
-            </StyledFormArea>
-            <CopyrightText>
-                All rights reserved &copy;2022 by Altimate.ai
-            </CopyrightText>
-        </div>
+		<div class="login-area">
+			<div class="login-item2">
+				<a href="/altimate-platform-web/home"><img src="images/logo.png" alt="" /></a>
+			</div>
+			<Formik
+                initialValues={{
+                    email: "",
+                    password: "",
+                }}
+                        validationSchema={
+                            Yup.object({
+                                email: Yup.string()
+                                    .email("Invalid email address")
+                                    .required("Required field"),
+                                password: Yup.string()
+                                    .min(3, "Password is too short")
+                                    .max(30, "password is too long")
+                                    .required("Required field")
+                            })
+                        }
+                        onSubmit={(values, {setSubmitting, setFieldError}) => {
+                            console.log(values)
+                            loginUser(values, navigate, setFieldError, setSubmitting);
+                        }}
+                    >
+                        {({ handleSubmit,
+                            isSubmitting, 
+                        }) => (
+                        <div class="login-item">
+				            <div class="login-item-inner">
+                                <form onSubmit={handleSubmit}>
+                                    <div class="login-item-inner2">
+                                        <h3>Welcome to <a href="/altimate-platform-web/home">Altimate AI</a></h3>
+                                        <div>
+                                            <p>No Account ?<br></br><a href="/altimate-platform-web/signup">Sign up</a></p>
+                                        </div>
+                                    </div>
+                                    <h2>Sign in</h2>
+                                    <label>Enter your email address</label>
+                                    <Field name="email" type="email"/>
+                                    <ErrorMessage name="email" component="div" />
+                                    <label>Enter your Password</label>
+                                    <div class="login-item-inner4">
+                                            <Field name="password" type="password" id="txtPassword"/>
+                                            <button type="button" onClick={() => {
+                                                    var type = document.getElementById('txtPassword').type;
+                                                    document.getElementById('txtPassword').type = type === 'password' ? 'text' : 'password';
+                                                }
+                                            }
+                                            class="toggle">
+                                            <i id="eyeIcon" class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <ErrorMessage name="password" component="div" />
+                                    <div class="login-item-inner5">
+                                            <a href="/altimate-platform-web/forgottenPassword">Forgot Password</a>
+                                        </div>
+                                    <button type="submit" disabled={isSubmitting}>
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                )}
+            </Formik>
+	</div>
     )
 }
 

@@ -43,7 +43,6 @@ function App({ checked }) {
     <Router basename='/altimate-platform-web'>
       <Navbar/>
       {checked &&
-      <StyledContainer>
         <Routes>
           <Route path="/signup" element={<BasicRoute />}>
             <Route path="/signup" element={<Signup />}/>
@@ -79,7 +78,6 @@ function App({ checked }) {
             <Route path="/templates" element={<Templates />}/>
           </Route>
         </Routes>
-      </StyledContainer>
       }
     </Router>
   );
