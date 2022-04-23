@@ -1,8 +1,6 @@
-import {StyledContainer} from './components/Styles';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Dashbord from './pages/Dashboard';
 
 import {
   BrowserRouter as Router,
@@ -17,7 +15,6 @@ import ForgottenPassword from './pages/ForgottenPassword';
 import EmailSent from './pages/EmailSent';
 import PasswordReset from './pages/PasswordReset';
 import ConfirmationEmail from './pages/ConfirmationEmail';
-import Navbar from './pages/Navbar';
 import Projects from './pages/Projects';
 import Settings from './pages/Settings';
 import Templates from './pages/Templates';

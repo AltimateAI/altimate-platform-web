@@ -240,7 +240,7 @@ export const get_my_projects = (setProjects, setErrorMessage, setLoaded) => {
     });    
 };
 
-export const get_project = (id, setProject, setActiveModal) => {
+export const get_project = (id, setProject) => {
     const url = BaseUrl + "project/" + id;
 
     sessionService.loadSession().then(session => {
@@ -259,7 +259,6 @@ export const get_project = (id, setProject, setActiveModal) => {
             }
             else if (data.status === 200) {
                 setProject(data);
-                setActiveModal(true);
             }
     
         }).catch(err => console.error(err))
