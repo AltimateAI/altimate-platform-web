@@ -1,19 +1,6 @@
-import { StyledFormButton, StyledFormArea, 
-    StyledTextInput, StyledLabel, 
-    StyledTitle, Avatar, colors,
-    ButtonGroup,
-    StyledButton,
-    ExtraText,
-    TextLink,
-    CopyrightText
-} from "../components/Styles";
-import Logo from "./../assets/logo.png";
 import * as Yup from 'yup'
 
-import {Formik, Form} from 'formik'
-import { TextInput } from "../components/FormLib";
-import { FiMail, FiLock, FiUser } from 'react-icons/fi';
-import { ThreeDots } from 'react-loader-spinner';
+import {Formik, Field, ErrorMessage} from 'formik'
 
 import { connect } from "react-redux";
 import { signupUser } from "../auth/actions/userAction";
@@ -22,12 +9,10 @@ import { useNavigate } from "react-router-dom"
 const Signup = () => {
     const navigate = useNavigate();
     return (
-        <div>
-            <StyledFormArea>
-                <Avatar image={Logo} widthSize={200} heightSize={50}/>
-                <StyledTitle color={colors.dark1} size={30}>
-                    User Signup
-                </StyledTitle>
+        <div class="login-area">
+			<div class="login-item2">
+				<a href="altimate-platform-web/login"><img src="images/logo.png" alt="" /></a>
+			</div>
                 <Formik
                     initialValues={{
                         name: "",
@@ -56,64 +41,56 @@ const Signup = () => {
                         signupUser(values, navigate, setFieldError, setSubmitting);
                     }}
                 >
-                    {( {isSubmitting} ) => (
-                        <Form>
-                            <TextInput
-                                name="name"
-                                type="text"
-                                label="Full Name"
-                                placeholder="Raouf Ghrissi"
-                                icon={<FiUser/>}
-                            />
-                            <TextInput
-                                name="email"
-                                type="text"
-                                label="Email Address"
-                                placeholder="member@altimate.ai"
-                                icon={<FiMail/>}
-                            />
-                            <TextInput
-                                name="password"
-                                type="password"
-                                label="Password"
-                                placeholder="***********"
-                                icon={<FiLock/>}
-                            />
-                            <TextInput
-                                name="confirm_password"
-                                type="password"
-                                label="Confirm Password"
-                                placeholder="***********"
-                                icon={<FiLock/>}
-                            />
-                            <ButtonGroup>
-                                {!isSubmitting && (
-                                        <StyledFormButton type="submit">
-                                            Signup
-                                        </StyledFormButton>
-                                    ) 
-                                 }
-
-                                {isSubmitting && (
-                                        <ThreeDots
-                                            color={colors.dark2}
-                                            height={49}
-                                            width={100}
-                                        />
-                                    )
-                                }
-                            </ButtonGroup>
-                        </Form>
+                    {( {handleSubmit} ) => (
+                        <div class="login-item">
+                        <div class="login-item-inner">
+                            <form onSubmit={handleSubmit}>
+                                <div class="login-item-inner2">
+                                    <h3>Welcome to <a href="login">Altimate AI</a></h3>
+                                    <div>
+                                        <p>Have an Account ?<br></br><a href="login">Sign in</a></p>
+                                    </div>
+                                </div>
+                                <h2>Sign up</h2>
+                                <label>Enter your email address</label>
+                                <Field name="email" type="email"/>
+                                <ErrorMessage name="email" component="div" />
+                                <label>Enter your name</label>
+                                <Field name="name" type="text"/>
+                                <ErrorMessage name="name" component="div" />
+                                <label>Enter your Password</label>
+                                <div class="login-item-inner4">
+                                    <Field name="password" type="password" id="txtPassword"/>
+                                        <button type="button" onClick={() => {
+                                                    var type = document.getElementById('txtPassword').type;
+                                                    document.getElementById('txtPassword').type = type === 'password' ? 'text' : 'password';
+                                                }
+                                            }
+                                               class="toggle">
+                                        <i id="eyeIcon" class="fa fa-eye"></i>
+                                        </button>
+                                </div>
+                                <ErrorMessage name="password" component="div" />
+                                <label>Confirm  Password</label>
+                                <div class="login-item-inner4">
+                                    <Field name="confirm_password" type="password" id="txtConfirmPassword"/>
+                                        <button type="button" onClick={() => {
+                                                    var type = document.getElementById('txtConfirmPassword').type;
+                                                    document.getElementById('txtConfirmPassword').type = type === 'password' ? 'text' : 'password';
+                                                }
+                                            }
+                                               class="toggle">
+                                        <i id="eyeIcon" class="fa fa-eye"></i>
+                                        </button>
+                                </div>
+                                <ErrorMessage name="confirm_password" component="div" />
+                                <button type="submit">Sign up</button>
+                            </form>
+                        </div>
+                    </div>
                     )}
                 </Formik>
-                <ExtraText>
-                    Already have an account ? <TextLink to="/login">Login</TextLink>
-                </ExtraText>
-            </StyledFormArea>
-            <CopyrightText>
-                All rights reserved &copy;2022 by Altimate.ai
-            </CopyrightText>
-        </div>
+            </div>
     )
 }
 
