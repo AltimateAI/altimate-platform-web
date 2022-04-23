@@ -41,7 +41,6 @@ function App({ checked }) {
     }, []);
   return (
     <Router basename='/altimate-platform-web'>
-      <Navbar/>
       {checked &&
         <Routes>
           <Route path="/signup" element={<BasicRoute />}>

@@ -3,10 +3,13 @@ import moment from "moment";
 import ProjectModal from "./ProjectModal";
 import { delete_project, get_my_projects, get_project } from "../auth/actions/userAction";
 import ErrorMessage from "./ErrorMessage";
-import { StyledTable, StyledButton, ButtonGroup, colors, Avatar, TH, TD } from "../components/Styles";
 import { ThreeDots } from "react-loader-spinner";
+import { logoutUser } from "../auth/actions/userAction"; 
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Project = () => {
+const Project = ({logoutUser}) => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -39,7 +42,47 @@ const Project = () => {
   };
 
   return (
-    <>
+    <main class="main-wrapper">
+			<div class="menu-area">
+				<div class="menu-item">
+					<a href="#"><img src="images/logo.png" alt="" /></a>
+				</div>
+				<div class="menu-item2">
+					<ul>
+						<li><a class="active" href="#"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
+						<li><a href="#"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
+						<li><a href="#"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
+						<li><a href="#"><span><img src="images/04.png" /></span>Settings</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu-area2">
+				<i class="fas fa-times"></i>
+				<div class="menu-item">
+					<a href="#"><img src="images/logo.png" alt="" /></a>
+				</div>
+				<div class="menu-item2">
+					<ul>
+						<li><a class="active" href="#"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
+						<li><a href="#"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
+						<li><a href="#"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
+						<li><a href="#"><span><img src="images/04.png" /></span>Settings</a></li>
+					</ul>
+				</div>
+			</div>
+      <div class="content-area">
+				<div class="project-area">
+					<div class="project-item">
+						<div>
+							<h2>Projects</h2>
+						</div>
+						<div>
+							<i class="fas fa-bars"></i>
+							<p>Welcome, Raouf G.</p>
+							<a href="#" onClick={() => logoutUser(navigate)}>Logout</a>
+						</div>
+					</div>					
+				</div>
       {activeModal && (
           <ProjectModal
             active={activeModal}
@@ -50,53 +93,43 @@ const Project = () => {
         />
       )}
       {!activeModal && (
-          <StyledButton
-            to="#"
-            onClick={() => setActiveModal(true)}>
-                Create Project
-          </StyledButton>
+					<div class="project-item2">
+            <a data-toggle="modal" onClick={() => setActiveModal(true)} href="#">Add Project</a>
+          </div>
       )}
       <ErrorMessage message={errorMessage} />        
       {loaded && projects && !activeModal && (
-        <StyledTable className="table is-fullwidth">
-          <thead>
-            <tr>
-              <TH>Name</TH>
-              <TH>Creation date</TH>
-              <TH>Description</TH>
-              <TH>Actions</TH>
-            </tr>
-          </thead>
+        <div class="project-item3">
+          <div class="table-responsive">
+            <table cellpadding="0">
+              <thead>
+                <tr>
+                  <th><span>Project Name</span></th>
+                  <th><span>Description</span></th>
+                  <th><span>Created</span> </th>
+                  <th><span>Last Run <img src="images/08.png" /></span></th>
+                  <th><span>Action</span></th>
+                </tr>
+              </thead>
           <tbody>
             {projects.map((project) => (
               <tr key={project.id}>
-                <TD>{project.name}</TD>
-                <TD>{moment(project.creation_date).format("MMM Do YY")}</TD>
-                <TD>{project.description}</TD>
-                <TD>
-                  <ButtonGroup>
-                    <StyledButton
-                      to="#"
-                      onClick={() => handleUpdate(project.id)}
-                      backgroundcolor="green"
-                      width={85}
-                    >
-                      Update
-                    </StyledButton>
-                    <StyledButton
-                      to="#"
-                      onClick={() => handleDelete(project.id)}
-                      backgroundcolor="red"
-                      width={80}
-                    >
-                      Delete
-                    </StyledButton>
-                  </ButtonGroup>                  
-                </TD>
-              </tr>
+                <td>{project.name}</td>
+                <td>{project.description}</td>
+                <td>{moment(project.creation_date).format("MMM Do YY")}</td>
+                <td>{moment(project.creation_date).format("MMM Do YY")}</td>
+                <td>
+									<ul>
+										<li><a href="#" onClick={() => handleUpdate(project.id)}><img src="images/09.png" /></a></li>
+										<li><a href="#" onClick={() => handleDelete(project.id)}><img src="images/10.png" /></a></li>
+									</ul>
+								</td>
+              </tr>                
             ))}
           </tbody>
-        </StyledTable>
+          </table>
+					</div>
+				</div>
       )} 
       {!loaded && (
         <ThreeDots
@@ -105,8 +138,12 @@ const Project = () => {
           width={100}
         />
       )}
-    </>
+      </div>
+    </main>
   );
 };
+const mapStateToProps = ({session}) => ({
+  user : session.user
+})
 
-export default Project;
+export default connect(mapStateToProps, {logoutUser})(Project);

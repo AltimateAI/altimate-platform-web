@@ -337,14 +337,14 @@ button:focus {
     width: 100%;
 }
 
-.project-item3 table tr:nth-of-type(1) td {
+.project-item3 table tr:nth-of-type(1) th {
     padding: 0;
     padding-bottom: 32px;
     border-bottom: none;
     padding-left: 0;
 }
 
-.project-item3 table tr td span {
+.project-item3 table tr th span {
     font-weight: 600;
     font-size: 14px;
     color: #00072b;
@@ -354,7 +354,7 @@ button:focus {
     border-bottom: 1px solid #C9CFDA;
 }
 
-.project-item3 table tr td span img {
+.project-item3 table tr th span img {
     max-width: 100%;
     margin-left: 8px;
 }
@@ -553,6 +553,10 @@ button:focus {
     font-size: 20px;
     color: rgba(83, 185, 234, .9);
     margin: 0;
+}
+
+.project-item20 a {
+    width: 124px;
 }
 
 .project-item4 {
@@ -773,8 +777,8 @@ button:focus {
 }
 
 .login-item-inner {
-    max-width: 1204px;
-    margin: 0 auto;
+    max-width: 817px;
+    margin-left: auto;
 }
 
 .login-item form {
@@ -782,7 +786,6 @@ button:focus {
     background: rgba(255, 255, 255, 0.75);
     border-radius: 40px;
     max-width: 539px;
-    margin-left: auto;   
 }
 
 .login-item-inner2 {
@@ -994,4 +997,107 @@ button:focus {
     top: 50%;
     right: 15px;
     transform: translateY(-50%);
+}
+
+.login-item-inner h6 {
+    font-weight: 400;
+    font-size: 16px;
+    color: red;
+    margin: 10px 0 0;
+}
+
+/*modal*/
+
+.modal-content {
+    background: transparent;
+    border: none;
+}
+
+.description-area {
+    width: 347px;
+    margin: 0 auto;
+}
+
+.description-area form {
+    max-width: 347px;
+    padding: 20px 32px 50px 13px;
+    background: #fff;
+    margin: 0 auto;
+}
+
+.description-area h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #5e5e75;
+    margin: 0 0 37px;
+}
+
+.description-area label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    color: #109CF1;
+    margin: 0 0 10px;
+}
+
+.description-area input {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    color: #192A3E;
+    width: 100%;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #818E9B;
+    margin-bottom: 33px;
+}
+
+.description-area input::placeholder {
+    opacity: 1;
+    color: #192A3E;
+}
+
+.description-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 -2px;
+}
+
+.description-item div {
+    width: 112px;
+    padding: 0 2px;
+}
+
+.description-item button,
+.description-item a {
+    font-weight: 700;
+    font-size: 14px;
+    font-style: italic;
+    color: #FFFFFF;
+    width: 100%;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #53B9EA;
+    border: 1px solid #1890FF;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 2px;
+    transition: 0.2s all ease;
+    -webkit-transition: 0.2s all ease;
+    -moz-transition: 0.2s all ease;
+}
+
+.description-item button:hover,
+.description-item a:hover {
+    opacity: .8;
 }
