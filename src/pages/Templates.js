@@ -20,12 +20,12 @@ const Template = () => {
     <main class="main-wrapper">
 			<div class="menu-area">
 				<div class="menu-item">
-					<a href="#"><img src="images/logo.png" alt="" /></a>
+					<a href="login"><img src="images/logo.png" alt="" /></a>
 				</div>
 				<div class="menu-item2">
 					<ul>
-						<li><a href="#"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
-						<li><a class="active" href="#"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
+						<li><a href="projects"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
+						<li><a class="active" href="templates"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
 						<li><a href="#"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
 						<li><a href="#"><span><img src="images/04.png" /></span>Settings</a></li>
 					</ul>

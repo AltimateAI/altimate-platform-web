@@ -21,6 +21,7 @@ import Templates from './pages/Templates';
 import { useEffect } from 'react';
 import { get_long_url } from './auth/actions/userAction';
 import HtmlContent from './pages/HtmlContent';
+import Reports from './pages/Reports';
 function App({ checked }) {
     
     useEffect(() => {
@@ -63,6 +64,9 @@ function App({ checked }) {
           </Route>
           <Route path="/projects" element={<AuthRoute />}>
             <Route path="/projects" element={<Projects />}/>
+          </Route>
+          <Route path="/reports" element={<AuthRoute />}>
+            <Route path="/reports" element={<Reports />}/>
           </Route>
           <Route path="/html_table" element={<AuthRoute />}>
             <Route path="/html_table" element={<HtmlContent />}/>
