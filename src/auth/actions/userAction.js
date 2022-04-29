@@ -162,7 +162,7 @@ export const confirmEmail = (confirmation_code) => {
     }).catch(err => console.error(err))
 };
 
-export const getSdkAccessKey = (setaccess_key) => {
+export const get_my_SdkAccessKeys = (setKeys, setLoaded) => {
     const url = BaseUrl + "access_key";
 
     sessionService.loadSession().then(session => {
@@ -180,14 +180,15 @@ export const getSdkAccessKey = (setaccess_key) => {
                 console.log(message);
             }
             else if (data.status === 200) {
-                setaccess_key(data.access_key);
+                setKeys(data.list);
+                setLoaded(true);
             }
     
         }).catch(err => console.error(err))
     });    
 };
 
-export const generateSdkAccessKey = (setaccess_key) => {
+export const generateSdkAccessKey = (setKeys, setLoaded) => {
     const url = BaseUrl + "access_key";
 
     sessionService.loadSession().then(session => {
@@ -205,7 +206,7 @@ export const generateSdkAccessKey = (setaccess_key) => {
                 console.log(message);
             }
             else if (data.status === 201) {
-                setaccess_key(data.access_key);
+                get_my_SdkAccessKeys(setKeys, setLoaded);
             }
     
         }).catch(err => console.error(err))

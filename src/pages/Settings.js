@@ -1,54 +1,107 @@
-import React from 'react';
-import { getSdkAccessKey } from '../auth/actions/userAction';
-import { StyledTitle, StyledButton, ButtonGroup, StyledSubTitle } from '../components/Styles';
-import { useState, useEffect } from 'react';
-import { colors } from '../components/Styles';
-import { generateSdkAccessKey } from '../auth/actions/userAction';
-import { FaKey } from 'react-icons/fa';
-import { Formik, Form } from 'formik';
-import { TextInput } from '../components/FormLib';
+import React, { useEffect, useState } from "react";
+import moment from "moment";
+import { ThreeDots } from "react-loader-spinner";
+import { logoutUser } from "../auth/actions/userAction";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { generateSdkAccessKey, get_my_SdkAccessKeys } from "../auth/actions/userAction";
 
-const Settings = () => {
-  const [access_key, setaccess_key] = useState(false);
+const Setting = ({logoutUser}) => {
+  const navigate = useNavigate();
+  const [keys, setKeys] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loaded, setLoaded] = useState(false);
+
+  const getKeys = async () => {
+    get_my_SdkAccessKeys(setKeys, setLoaded);
+  };
 
   useEffect(() => {
-    getSdkAccessKey(setaccess_key);
-  }, [getSdkAccessKey, setaccess_key]);
+    getKeys();
+  }, []);
 
   return (
-    <div>
-      {!access_key && (
-          <StyledTitle color={colors.light1} size={20}>
-            <StyledSubTitle>
-                You don't have an SDK access key !
-            </StyledSubTitle>              
-              Generate a new one to use Altimate ai library
-              <ButtonGroup>
-                <StyledButton to="#" onClick={() => generateSdkAccessKey(setaccess_key)}>Generate Key</StyledButton>
-              </ButtonGroup>
-          </StyledTitle>
+    <main class="main-wrapper">
+			<div class="menu-area">
+				<div class="menu-item">
+					<a href="reports"><img src="images/logo.png" alt="" /></a>
+				</div>
+				<div class="menu-item2">
+					<ul>
+						<li><a href="projects"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
+						<li><a href="templates"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
+						<li><a href="reports"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
+						<li><a class="active" href="settings"><span><img src="images/04.png" /></span>Settings</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu-area2">
+				<i class="fas fa-times"></i>
+				<div class="menu-item">
+					<a href="#"><img src="images/logo.png" alt="" /></a>
+				</div>
+			</div>
+      <div class="content-area">
+				<div class="project-area">
+					<div class="project-item">
+						<div>
+							<h2>Settings</h2>
+						</div>
+						<div>
+							<i class="fas fa-bars"></i>
+							<p>Welcome, Raouf G.</p>
+							<a href="#" onClick={() => logoutUser(navigate)}>Logout</a>
+						</div>
+					</div>
+          <div class="project-item2 project-item20">
+						<h2>Access Keys</h2>
+						<a href="#" onClick={() => generateSdkAccessKey(setKeys, setLoaded)}>Generate Access Key</a>
+					</div>				
+				</div>
+      {loaded && keys && (
+        <div class="project-item3 project-item5">
+          <div class="table-responsive">
+            <table cellPadding="0">
+              <thead>
+                <tr>
+                  <th><span>Key</span></th>
+									<th><span>Status</span></th>
+									<th><span>Created <img src="images/08.png" /></span></th>
+									<th><span>Action</span></th>
+                </tr>
+              </thead>
+          <tbody>
+            {keys.map((key) => (
+              <tr>
+              <td>{key.access_key}</td>
+              <td>{key.access_key_status}</td>
+              <td>{moment(key.creation_date).format("MMM Do YY")}</td>
+              <td>
+                <ul>
+                  <li><a href="#"><img src="images/16.png" /></a></li>
+                  <li><a href="#"><img src="images/10.png" /></a></li>
+                </ul>
+              </td>
+              </tr>
+            ))}
+          </tbody>
+          </table>
+					</div>
+				</div>
+      )} 
+      {!loaded && (
+        <ThreeDots
+          color="white"
+          height={49}
+          width={100}
+        />
       )}
-      {access_key && (
-          <Formik
-          initialValues={{
-              access_key: access_key
-          }}          
-          >
-            <Form>
-              <TextInput
-                name="access_key"
-                type="text"
-                label="SDK Access Key"
-                size="400"
-                readOnly="true"
-                color={colors.dark3}
-                icon={<FaKey/>}
-              />            
-            </Form>
-      </Formik>
-      )}
-   </div>
-  )
-}
+      </div>
+    </main>
+  );
+};
+const mapStateToProps = ({session}) => ({
+  user : session.user
+})
 
-export default Settings;
+export default connect(mapStateToProps, {logoutUser})(Setting);
