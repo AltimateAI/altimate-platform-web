@@ -469,3 +469,31 @@ export const get_html_table = (public_id, setTable, setHtml_id, setComments) => 
         }).catch(err => console.error(err))
     });    
 };
+
+export const get_my_reports = (setReports, setErrorMessage, setLoaded) => {
+    const url = BaseUrl + "html_table";
+
+    sessionService.loadSession().then(session => {
+        const config = {
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + session
+            }
+          }
+          
+        axios.get(url, config).then((response) => {
+            const {data} = response;
+            let {message} = data;
+            if (data.status === 401) {            
+                console.log(message);
+                setErrorMessage(message);
+            }
+            else if (data.status === 200) {
+                const reports = data.list;
+                setReports(reports);
+                setLoaded(true);
+            }
+    
+        }).catch(err => console.error(err))
+    });    
+};

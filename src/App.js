@@ -48,7 +48,7 @@ function App({ checked }) {
             <Route path="/login" element={<Login />}/>
           </Route>
           <Route path="/" element={<BasicRoute />}>
-            <Route path="/" element={<Home />}/>
+            <Route path="/" element={<Login />}/>
           </Route>
           <Route path="/forgottenPassword" element={<BasicRoute />}>
             <Route path="/forgottenPassword" element={<ForgottenPassword />}/>

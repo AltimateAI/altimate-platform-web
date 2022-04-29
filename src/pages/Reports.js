@@ -4,6 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { logoutUser } from "../auth/actions/userAction";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { get_my_reports } from "../auth/actions/userAction";
 
 const Report = ({logoutUser}) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Report = ({logoutUser}) => {
   const [loaded, setLoaded] = useState(false);
 
   const getReports = async () => {
-    //get_my_reports(setProjects, setErrorMessage, setLoaded);
+    get_my_reports(setReports, setErrorMessage, setLoaded);
   };
 
   useEffect(() => {
@@ -67,26 +68,23 @@ const Report = ({logoutUser}) => {
             <table cellPadding="0">
               <thead>
                 <tr>
-                  <th><span>Report Name</span></th>
-									<th><span>Project Name</span></th>
-									<th><span>Last Updated</span></th>
-									<th><span>Latest Comments <img src="images/08.png" /></span></th>
-									<th><span>Action</span></th>
+                  	<th><span>Report Name</span></th>
+					<th><span>Project Name</span></th>
+					<th><span>Last Updated</span></th>
+					<th><span>Latest Comments <img src="images/08.png" /></span></th>
+					<th><span></span></th>
                 </tr>
               </thead>
           <tbody>
             {reports.map((report) => (
               <tr key={report.id}>
-                  <td style="color: #1093F3;">Data summary</td>
-									<td>Housing Price</td>
-									<td>{moment(report.creation_date).format("MMM Do YY")}</td>
-									<td style="color: #1093F3;">{moment(report.creation_date).format("MMM Do YY")}</td>
-									<td>
-										<ul>
-											<li><a href="#"><img src="images/10.png" /></a></li>
-										</ul>
-									</td>
-              </tr>                
+                    <td><a href={report.longUrl}>Report {report.id}</a></td>
+					<td>{report.project_name}</td>
+					<td>{moment(report.creation_date).format("MMM Do YY")}</td>
+					<td>{moment(report.creation_date).format("MMM Do YY")}</td>
+					<td>
+					</td>
+              </tr>
             ))}
           </tbody>
           </table>

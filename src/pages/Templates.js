@@ -26,8 +26,8 @@ const Template = () => {
 					<ul>
 						<li><a href="projects"><span><img src="images/01.png" /><img src="images/05.png" /></span>Projects</a></li>
 						<li><a class="active" href="templates"><span><img src="images/02.png" /><img src="images/06.png" /></span>Templates</a></li>
-						<li><a href="#"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
-						<li><a href="#"><span><img src="images/04.png" /></span>Settings</a></li>
+						<li><a href="reports"><span><img src="images/03.png" /><img src="images/07.png" /></span>Reports</a></li>
+						<li><a href="settings"><span><img src="images/04.png" /></span>Settings</a></li>
 					</ul>
 				</div>
 			</div>
