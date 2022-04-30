@@ -6,19 +6,11 @@ const EmailSent = () => {
     const {state} = useLocation();
     const {user_email, reset} = state;
     return (
-        <div>
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    backgroundColor: "transparent",
-                    width: "100%",
-                    padding: "15px",
-                    display: "flex",
-                    justifyContent: "flex-start"
-                }}
-            >
+        <div class="login-area">
+			<div class="login-item2">
+				<a href="home"><img src="images/logo.png" alt="" /></a>
+			</div>
+            <div>
                 <Avatar image={Logo} />
             </div>
             {!reset && user_email && (
