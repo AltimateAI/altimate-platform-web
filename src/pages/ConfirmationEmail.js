@@ -13,21 +13,11 @@ const ConfirmationEmail = () => {
     }, [confirmEmail, confirmation_code]);
     
     return (
+        <div class="login-area">
+			<div class="login-item2">
+				<a href="home"><img src="images/logo.png" alt="" /></a>
+			</div>
         <div>
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    backgroundColor: "transparent",
-                    width: "100%",
-                    padding: "15px",
-                    display: "flex",
-                    justifyContent: "flex-start"
-                }}
-            >
-                <Avatar image={Logo} />
-            </div>
                 <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={50}>
                     Your email is validated
@@ -38,6 +28,7 @@ const ConfirmationEmail = () => {
                     </StyledButton>
                 </ButtonGroup>
                 </StyledFormArea>      
+        </div>
         </div>
     )
 }
