@@ -57,7 +57,7 @@ const Report = ({logoutUser}) => {
 						</div>
 						<div>
 							<i class="fas fa-bars"></i>
-							<p>Welcome, Raouf G.</p>
+							<p>Welcome</p>
 							<a href="#" onClick={() => logoutUser(navigate)}>Logout</a>
 						</div>
 					</div>					

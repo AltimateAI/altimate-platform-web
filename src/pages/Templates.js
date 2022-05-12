@@ -39,7 +39,7 @@ const Template = () => {
 						</div>
 						<div>
 							<i class="fas fa-bars"></i>
-							<p>Welcome, Raouf G.</p>
+							<p>Welcome</p>
 							<a href="#">Logout</a>
 						</div>
 					</div>				

@@ -69,7 +69,7 @@ const Project = ({logoutUser}) => {
 						</div>
 						<div>
 							<i class="fas fa-bars"></i>
-							<p>Welcome, Raouf G.</p>
+							<p>Welcome</p>
 							<a href="#" onClick={() => logoutUser(navigate)}>Logout</a>
 						</div>
 					</div>					
@@ -99,10 +99,10 @@ const Project = ({logoutUser}) => {
                         <form onSubmit={handleSubmit}>
                             <h2>Add Project</h2>                          
                             <label>Project Name</label>
-                            <Field type="text" name="name" placeholder="Cryptocurrency Project" required />
+                            <Field type="text" name="name" required />
                             <ErrorMessage name="name" component="div" />
                             <label>Project Description</label>
-                            <Field type="text" name="description" placeholder="Coin Analysis of ETH" />
+                            <Field type="text" name="description" />
                             <ErrorMessage name="description" component="div" />
                             {!isSubmitting && (
                                 <div className="description-item">

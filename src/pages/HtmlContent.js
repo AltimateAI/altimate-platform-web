@@ -1,10 +1,10 @@
 import { Field, Formik } from "formik";
+import Iframe from './Iframe';
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { add_comment, get_html_table } from "../auth/actions/userAction";
 import * as Yup from 'yup'
-import { StyledHtmlContent } from "../components/Styles";
 const HtmlContent = () => {  
   const [searchParams, setSearchParams] = useSearchParams();
   const public_id = searchParams.get("content");
@@ -39,17 +39,16 @@ const HtmlContent = () => {
               </div>
               <div>
                 <i class="fas fa-bars"></i>
-                <p>Welcome, Raouf G.</p>
+                <p>Welcome</p>
                 <a href="#">Logout</a>
               </div>
             </div>					
           </div>
           <div class="update-area">
             <div class="update-item">
-              <p>Project Name: Housing Price   Last Updated: 04/12/2022 3:30 pm <br></br>Last Comment: 04/13/2022 by Raouf G.</p>
             </div>
             {table && (
-              <StyledHtmlContent dangerouslySetInnerHTML={{__html: table}} />
+              <Iframe content={table} />
             )}
           {table && comments && html_id && (
             <>
